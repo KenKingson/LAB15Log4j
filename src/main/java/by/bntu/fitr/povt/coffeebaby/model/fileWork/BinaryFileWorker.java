@@ -4,72 +4,59 @@ import by.bntu.fitr.povt.coffeebaby.model.Necklace;
 import by.bntu.fitr.povt.coffeebaby.model.PreciousStone;
 import by.bntu.fitr.povt.coffeebaby.model.SemipreciousStone;
 import by.bntu.fitr.povt.coffeebaby.model.Stone;
+import by.bntu.fitr.povt.coffeebaby.view.View;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BinaryFileWorker {
-    public static String write(Necklace necklace, String fileName) {
-        //create decorator, base on FileOutputStream
-        try (BufferedWriter stream = new BufferedWriter(new FileWriter(fileName))){
-            StringBuilder stringBuilder = new StringBuilder();
-            for (Stone stone : necklace) {
-                if (stone instanceof SemipreciousStone) {
-                    stringBuilder.append(((SemipreciousStone) stone).getType()+ " ");
-
-                }
-                else if (stone instanceof PreciousStone) {
-                    stringBuilder.append(((PreciousStone) stone).getType()+ " ");
-
-                }
-
-                stringBuilder.append(stone.getWeigth() + " " + stone.getPrice() + " ");
-                stringBuilder.append("\n");
+    public static void write(Necklace necklace, String fileName){
+        DataOutputStream stream = null;
+        try{
+           stream = new DataOutputStream(
+                    new BufferedOutputStream(
+                            new FileOutputStream(fileName)));
+            for(Stone stone : necklace){
+                stream.writeDouble(stone.getWeigth());
+                stream.writeDouble(stone.getPrice());
 
             }
-
-            stream.write(stringBuilder.toString());
-            stringBuilder.setLength(0);
+        }catch(IOException ex){
+            View.output(ex+"");
         }
-        catch(FileNotFoundException ex){
-            return "File not found error";
+        finally{
+            if(stream != null){
+                try {
+                    stream.close();
+                }catch (IOException ex){
+                    System.out.println("Error");
+                }
+            }
         }
-        catch (IOException ex) {
-            return "IO error";
-        }
-
-        return "Success";
     }
 
 
-    public static Necklace read(String fileName) {
-        Necklace readNecklace = new Necklace(new ArrayList<Stone>());
-        try (BufferedReader stream = new BufferedReader(new FileReader(fileName))) {
-            String info;
+    public static Necklace read(String fileName){
 
-            while ((info = stream.readLine())!=null){
-                String[] strings = info.split(" ");
-                Stone stone = null;
-                switch(strings[0]){
-                    case "CITRINE": stone = new PreciousStone(Double.valueOf((strings[2])),
-                            Double.valueOf(strings[1]),strings[0]);
-                    break;
-                    case "OPAL" : stone = new SemipreciousStone(Double.valueOf((strings[2])),
-                            Double.valueOf(strings[1]),strings[0]);
-                    break;
-                }
-                readNecklace.addStone(stone);
+        Necklace readNecklace = null;
+        try {DataInputStream stream = new DataInputStream(new BufferedInputStream(new FileInputStream(fileName)));
+
+            readNecklace = new Necklace(new ArrayList<Stone>());
+            while (stream.available() != 0) {
+                PreciousStone preciousStone = new PreciousStone();
+                preciousStone.setType("Briliant");
+                preciousStone.setPrice(stream.readDouble());
+                preciousStone.setWeigth(stream.readDouble());
+                readNecklace.addStone(preciousStone);
             }
-        }
 
-        catch (FileNotFoundException ex){
-            ex.printStackTrace();
-        }
-        catch(IOException ex){
-            ex.printStackTrace();
+
+
+        }catch(IOException ex){
+            View.output(ex+"");
         }
         return readNecklace;
-
+        }
     }
-}
+

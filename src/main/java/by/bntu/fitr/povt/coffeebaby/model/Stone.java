@@ -40,6 +40,28 @@ public abstract class Stone implements Comparable<Stone> {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Stone stone = (Stone) o;
+
+        if (Double.compare(stone.weigth, weigth) != 0) return false;
+        return Double.compare(stone.price, price) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(weigth);
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Stone{" +
                 " | Weigth = " + String.format("%.2f", weigth) +

@@ -4,6 +4,7 @@ package by.bntu.fitr.povt.coffeebaby.controller;
 import by.bntu.fitr.povt.coffeebaby.model.*;
 
 import by.bntu.fitr.povt.coffeebaby.model.fileWork.BinaryFileWorker;
+import by.bntu.fitr.povt.coffeebaby.model.fileWork.TxtFileWorker;
 import by.bntu.fitr.povt.coffeebaby.model.sorting.*;
 import by.bntu.fitr.povt.coffeebaby.view.*;
 
@@ -26,6 +27,7 @@ public class Controller {
         mine.extractionStone();
         necklace = stoneMaster.createNecklace(necklace, countOfStones);
         StonesCalc stonesCalc = new StonesCalc();
+        String fileName = "C:\\test.bin";
         while(true)
         {
             View.output("\nMenu:\n"
