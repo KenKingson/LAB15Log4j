@@ -1,10 +1,10 @@
 package by.bntu.fitr.povt.coffeebaby.controller;
 
 
-import by.bntu.fitr.povt.coffeebaby.model.*;
-
-import by.bntu.fitr.povt.coffeebaby.model.fileWork.BinaryFileWorker;
-import by.bntu.fitr.povt.coffeebaby.model.fileWork.TxtFileWorker;
+import by.bntu.fitr.povt.coffeebaby.model.essence.Mine;
+import by.bntu.fitr.povt.coffeebaby.model.essence.Necklace;
+import by.bntu.fitr.povt.coffeebaby.model.essence.Stone;
+import by.bntu.fitr.povt.coffeebaby.model.essence.StoneMaster;
 import by.bntu.fitr.povt.coffeebaby.model.sorting.*;
 import by.bntu.fitr.povt.coffeebaby.view.*;
 
@@ -19,7 +19,7 @@ public class Controller {
         StoneMaster stoneMaster = new StoneMaster();
         int choice, countOfStones, index, weight;
         ArrayList container = new ArrayList();
-        View.output("Please, input number of stones in your necklace: ");
+        ConsoleWriter.output("Please, input number of stones in your necklace: ");
         countOfStones = Inputer.inputInt();
         SortClient sortClient = new SortClient();
         Necklace necklace = new Necklace(new ArrayList<Stone>());
@@ -30,7 +30,7 @@ public class Controller {
         String fileName = "C:\\test.bin";
         while(true)
         {
-            View.output("\nMenu:\n"
+            ConsoleWriter.output("\nMenu:\n"
                     + "1.Output necklace\n"
                     +"2.Sorting stones by weight\n"
                     +"3.Sorting stones by price\n"
@@ -41,20 +41,20 @@ public class Controller {
             choice = Inputer.inputInt();
             switch(choice){
                 case 1:{
-                    View.output(necklace+"");
+                    ConsoleWriter.output(necklace+"");
                     break;
                 }
 
 
                 case 2:{
                     stonesCalc.sortStonesByWeigth(necklace);
-                    View.output(necklace+"");
+                    ConsoleWriter.output(necklace+"");
                     break;
                 }
 
                 case 3:{
                     stonesCalc.sortStonesByPrice(necklace);
-                    View.output(necklace+"");
+                    ConsoleWriter.output(necklace+"");
                     break;
                 }
                 case 4:{
@@ -72,25 +72,25 @@ public class Controller {
                     System.out.println("До какого ценника: ");
                     weight = Inputer.inputInt();
                     container = FindByWeight.lookUpTo(necklace,weight,countOfStones);
-                    View.output(container + "");
+                    ConsoleWriter.output(container + "");
                 }
 
                 break;
                 case 7:{
                     Collections.sort(necklace.getNecklace());
-                    View.output(necklace+"");
+                    ConsoleWriter.output(necklace+"");
                 }
                 break;
                 case 8: {
-                    BinaryFileWorker.write(necklace,"text.bin");
+                    //BinaryFileWork.write(necklace,"text.bin");
                 }
                 break;
                 case 9:{
-                    View.output(BinaryFileWorker.read("text.bin")+"");
+                    //ConsoleWriter.output(BinaryFileWork.read("text.bin")+"");
                 }
                 break;
                 default:
-                    View.output("Error: Incorrect choice.");
+                    ConsoleWriter.output("Error: Incorrect choice.");
             }
 
         }

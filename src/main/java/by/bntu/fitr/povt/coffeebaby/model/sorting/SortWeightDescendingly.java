@@ -1,6 +1,6 @@
 package by.bntu.fitr.povt.coffeebaby.model.sorting;
 
-import by.bntu.fitr.povt.coffeebaby.model.Stone;
+import by.bntu.fitr.povt.coffeebaby.model.essence.Stone;
 
 import java.util.Comparator;
 

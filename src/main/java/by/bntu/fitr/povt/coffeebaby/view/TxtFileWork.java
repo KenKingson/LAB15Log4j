@@ -1,16 +1,15 @@
-package by.bntu.fitr.povt.coffeebaby.model.fileWork;
+package by.bntu.fitr.povt.coffeebaby.view;
 
-import by.bntu.fitr.povt.coffeebaby.model.Necklace;
-import by.bntu.fitr.povt.coffeebaby.model.PreciousStone;
-import by.bntu.fitr.povt.coffeebaby.model.SemipreciousStone;
-import by.bntu.fitr.povt.coffeebaby.model.Stone;
+import by.bntu.fitr.povt.coffeebaby.model.essence.Necklace;
+import by.bntu.fitr.povt.coffeebaby.model.essence.PreciousStone;
+import by.bntu.fitr.povt.coffeebaby.model.essence.SemipreciousStone;
+import by.bntu.fitr.povt.coffeebaby.model.essence.Stone;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 
-public class TxtFileWorker {
-    public static String write(Necklace necklace, String fileName) {
+public class TxtFileWork implements FileWorker{
+    public void write(Necklace necklace, String fileName) {
         //create decorator, base on FileOutputStream
         try (BufferedWriter stream = new BufferedWriter(new FileWriter(fileName))){
             StringBuilder stringBuilder = new StringBuilder();
@@ -33,17 +32,17 @@ public class TxtFileWorker {
             stringBuilder.setLength(0);
         }
         catch(FileNotFoundException ex){
-            return "File not found error";
+            ConsoleWriter.output("File not found error");
         }
         catch (IOException ex) {
-            return "IO error";
+            ConsoleWriter.output("IO error");
         }
 
-        return "Success";
+
     }
 
 
-    public static Necklace read(String fileName) {
+    public Necklace read(String fileName) {
         Necklace readNecklace = new Necklace(new ArrayList<Stone>());
         try (BufferedReader stream = new BufferedReader(new FileReader(fileName))) {
             String info;

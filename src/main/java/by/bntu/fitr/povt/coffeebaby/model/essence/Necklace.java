@@ -1,9 +1,8 @@
-package by.bntu.fitr.povt.coffeebaby.model;
+package by.bntu.fitr.povt.coffeebaby.model.essence;
 
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 
 public class Necklace implements Iterable<Stone> {

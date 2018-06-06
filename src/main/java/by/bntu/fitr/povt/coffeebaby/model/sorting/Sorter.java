@@ -1,7 +1,5 @@
 package by.bntu.fitr.povt.coffeebaby.model.sorting;
 
-import by.bntu.fitr.povt.coffeebaby.view.View;
-
 import java.util.Collections;
 import java.util.List;
 

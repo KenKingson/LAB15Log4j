@@ -1,17 +1,14 @@
-package by.bntu.fitr.povt.coffeebaby.model.fileWork;
+package by.bntu.fitr.povt.coffeebaby.view;
 
-import by.bntu.fitr.povt.coffeebaby.model.Necklace;
-import by.bntu.fitr.povt.coffeebaby.model.PreciousStone;
-import by.bntu.fitr.povt.coffeebaby.model.SemipreciousStone;
-import by.bntu.fitr.povt.coffeebaby.model.Stone;
-import by.bntu.fitr.povt.coffeebaby.view.View;
+import by.bntu.fitr.povt.coffeebaby.model.essence.Necklace;
+import by.bntu.fitr.povt.coffeebaby.model.essence.PreciousStone;
+import by.bntu.fitr.povt.coffeebaby.model.essence.Stone;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 
-public class BinaryFileWorker {
-    public static void write(Necklace necklace, String fileName){
+public class BinaryFileWork implements FileWorker {
+    public void write(Necklace necklace, String fileName){
         DataOutputStream stream = null;
         try{
            stream = new DataOutputStream(
@@ -23,7 +20,7 @@ public class BinaryFileWorker {
 
             }
         }catch(IOException ex){
-            View.output(ex+"");
+            ConsoleWriter.output(ex+"");
         }
         finally{
             if(stream != null){
@@ -37,7 +34,7 @@ public class BinaryFileWorker {
     }
 
 
-    public static Necklace read(String fileName){
+    public Necklace read(String fileName){
 
         Necklace readNecklace = null;
         try {DataInputStream stream = new DataInputStream(new BufferedInputStream(new FileInputStream(fileName)));
@@ -54,7 +51,7 @@ public class BinaryFileWorker {
 
 
         }catch(IOException ex){
-            View.output(ex+"");
+            ConsoleWriter.output(ex+"");
         }
         return readNecklace;
         }

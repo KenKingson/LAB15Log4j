@@ -1,4 +1,4 @@
-package by.bntu.fitr.povt.coffeebaby.model;
+package by.bntu.fitr.povt.coffeebaby.model.essence;
 
 
 import java.util.Random;

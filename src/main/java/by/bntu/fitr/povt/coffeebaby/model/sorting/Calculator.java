@@ -1,4 +1,6 @@
-package by.bntu.fitr.povt.coffeebaby.model;
+package by.bntu.fitr.povt.coffeebaby.model.sorting;
+
+import by.bntu.fitr.povt.coffeebaby.model.essence.Necklace;
 
 public interface Calculator {
     void sortStonesByWeigth(Necklace necklace);

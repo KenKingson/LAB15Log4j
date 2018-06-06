@@ -1,13 +1,13 @@
-package by.bntu.fitr.povt.coffeebaby.model;
+package by.bntu.fitr.povt.coffeebaby.model.essence;
 
-public class PreciousStone extends Stone {
+public class SemipreciousStone extends Stone {
     private String type;
 
-    public PreciousStone() {
+    public SemipreciousStone() {
         super();
     }
 
-    public PreciousStone(double weigth, double price, String type) {
+    public SemipreciousStone(double weigth, double price, String type) {
         super(weigth, price);
         this.type = type;
     }
@@ -23,7 +23,7 @@ public class PreciousStone extends Stone {
 
     @Override
     public String toString() {
-        return "Precious Stone    (Type = " + String.format("%10s", this.getType()) +
+        return "Semiprecious Stone(Type = " + String.format("%10s", this.getType()) +
                 " | Weigth = " + String.format("%.2f", this.getWeigth()) +
                 " | Price = " + String.format("%.1f", this.getPrice()) + ")\n";
     }

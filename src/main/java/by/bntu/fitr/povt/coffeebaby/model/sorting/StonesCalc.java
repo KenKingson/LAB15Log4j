@@ -1,7 +1,6 @@
-package by.bntu.fitr.povt.coffeebaby.model;
+package by.bntu.fitr.povt.coffeebaby.model.sorting;
 
-import by.bntu.fitr.povt.coffeebaby.model.sorting.SortPriceAscending;
-import by.bntu.fitr.povt.coffeebaby.model.sorting.SortWeightAscending;
+import by.bntu.fitr.povt.coffeebaby.model.essence.Necklace;
 
 import java.util.Collections;
 
